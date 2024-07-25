@@ -11,6 +11,7 @@ MAIN_MENU = (By.CSS_SELECTOR, ".w-layout-grid a[href*='main-menu']")
 LANGUAGE_SELECTION = (By.CSS_SELECTOR, ".wg-element-wrapper.sw5")
 RUSSIAN_LANGUAGE = (By.CSS_SELECTOR, "a[lang='ru']")
 RUSSIAN_TITLE = (By.XPATH, "//h1[@class='h1-menu' and text()='Главное меню']")
+SETTING = (By.XPATH, "//a[contains(@href, '/settings') and @class='menu-button-block w-inline-block']")
 
 
 @given('Open the main page')
@@ -41,11 +42,19 @@ def change_language(context):
     actions.move_to_element(language).perform()
     context.driver.find_element(*RUSSIAN_LANGUAGE).click()
 
+
+@when('Click on setting options')
+def click_on_setting(context):
+    context.driver.find_element(*SETTING).click()
+
+
 @then('Verify the language has changed')
 def verify_russian_language_change(context):
     actual = context.driver.find_element(*RUSSIAN_TITLE).text
     expected = "Главное меню"
     assert expected == actual, f'The language did not change expected {expected} but got {actual}'
+
+
 
 
 
