@@ -40,8 +40,7 @@ class MainPage(Page):
         self.click(self.SETTING)
 
     def verify_russian(self):
-        actual = self.get_text(self.RUSSIAN_TITLE)
         expected = "Главное меню"
-        assert expected == actual, f'The language did not change expected {expected} but got {actual}'
+        self.verify_text(expected, self.RUSSIAN_TITLE)
 
 

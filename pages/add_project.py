@@ -3,7 +3,6 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 
 
-
 class AddProject(Page):
     ADD_PROJECT = (By.CSS_SELECTOR, "a[href*=add-a-project].page-setting-block")
     NAME_INPUT = (By.ID, "Your-name")
@@ -43,28 +42,19 @@ class AddProject(Page):
 
         expected_inputs = [self.name, self.company_name, self.role, self.age_company, self.country,
                            self.project_name, self.phone, self.email]
-        fields = [self.NAME_INPUT, self.COMPANY_NAME_INPUT, self.ROLE_INPUT, self.AGE_INPUT, self.COUNTRY_INPUT, self.NAME_PROJECT_INPUT, self.PHONE_INPUT,
+        fields = [self.NAME_INPUT, self.COMPANY_NAME_INPUT, self.ROLE_INPUT, self.AGE_INPUT, self.COUNTRY_INPUT,
+                  self.NAME_PROJECT_INPUT, self.PHONE_INPUT,
                   self.EMAIL_INPUT]
         actual_inputs = []
 
         for field in fields:
             try:
-                element = self.driver.find_element(*field)
-                element_text = element.get_attribute('value')
+                element_text = self.get_variable_text(field)
                 actual_inputs.append(element_text)
             except Exception as e:
                 print(f"Error finding element {field}: {e}")
         assert actual_inputs == expected_inputs, f'expected {expected_inputs} got {actual_inputs}'
 
-
     def verify_send_application_button(self):
         self.driver.wait.until(EC.presence_of_element_located(self.SUBMIT_BUTTON))
         self.driver.wait.until(EC.element_to_be_clickable(self.SUBMIT_BUTTON))
-
-
-
-
-
-
-
-
