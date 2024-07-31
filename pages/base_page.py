@@ -1,3 +1,6 @@
+from sample_script import driver
+
+
 class Page:
     def __init__(self, driver):
         self.driver = driver
@@ -20,6 +23,10 @@ class Page:
     def verify_text(self, expected_result, locator):
         actual_text = self.get_text(locator)
         assert actual_text == expected_result, f'Error expected {expected_result}'
+
+    def verify_right_page(self, string=''):
+        current_url = self.driver.current_url
+        assert string in current_url, f'Page {string} not found in current url {current_url}'
 
 
 

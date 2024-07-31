@@ -1,5 +1,6 @@
 from pages.main_page import MainPage
-from pages.add_project import AddProject
+from pages.add_project_page import AddProject
+from pages.community_page import CommunityPage
 
 
 class Application:
@@ -7,6 +8,8 @@ class Application:
         self.driver = driver
         self.main_page = MainPage(self.driver)
         self.add_project = AddProject(self.driver)
+        self.community_page = CommunityPage(self.driver)
+
 
 
 
