@@ -1,6 +1,5 @@
-from sample_script import driver
-
-
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
 class Page:
     def __init__(self, driver):
         self.driver = driver
@@ -24,9 +23,12 @@ class Page:
         actual_text = self.get_text(locator)
         assert actual_text == expected_result, f'Error expected {expected_result}'
 
-    def verify_right_page(self, string=''):
-        current_url = self.driver.current_url
-        assert string in current_url, f'Page {string} not found in current url {current_url}'
+    def verify_right_page(self, string):
+        self.driver.wait.until(EC.url_contains(string))
+
+
+
+
 
 
 

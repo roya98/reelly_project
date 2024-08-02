@@ -20,6 +20,7 @@ class MainPage(Page):
     def open_main_page(self):
         self.driver.get('https://soft.reelly.io/')
 
+
     def login(self):
         email_account = "jasmine.test0011@gmail.com"
         password_account = "Jasmine1234"
@@ -42,5 +43,8 @@ class MainPage(Page):
     def verify_russian(self):
         expected = "Главное меню"
         self.verify_text(expected, self.RUSSIAN_TITLE)
+
+
+
 
 
