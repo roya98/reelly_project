@@ -9,7 +9,7 @@ def connect_company(context):
 def switch_tab(context):
     context.app.connect_company_page.switch_window()
 
-@then('Verify the right tab opens')
-def verify_right_tab_opens(context):
+@then('Verify the connect company page opens')
+def verify_connect_company_opens(context):
     context.app.connect_company_page.verify_page()
 

@@ -6,5 +6,5 @@ Feature: Testing features in community page
     When Log in to the page
     And Click on setting options
     And Click on Community option
-    Then Verify the right page opens
+    Then Verify the community page opens
     And Verify 'Contact support' button is available and clickable

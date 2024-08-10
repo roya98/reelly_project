@@ -10,8 +10,8 @@ class CommunityPage(Page):
     def click_community(self):
         self.click(self.COMMUNITY)
 
-    def verify_community(self, str1):
-        self.verify_right_page(str1)
+    def verify_community(self):
+        self.verify_right_page("community")
 
     def button_available_clickable(self):
         self.driver.wait.until(EC.presence_of_element_located(self.SUPPORT))

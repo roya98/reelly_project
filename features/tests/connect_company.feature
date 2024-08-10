@@ -7,4 +7,4 @@ Feature: Connect the company
     When Log in to the page
     And Click on 'Connect the company'
     And  Switch the new tab
-    Then Verify the right tab opens
+    Then Verify the connect company page opens
