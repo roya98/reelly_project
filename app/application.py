@@ -5,6 +5,7 @@ from pages.connect_company_page import ConnectCompany
 from pages.settings_page import Settings
 from pages.contact_us_page import CONTACT
 from pages.user_guide_page import UserGuide
+from pages.password_page import Password
 
 
 
@@ -18,6 +19,7 @@ class Application:
         self.settings_page = Settings(self.driver)
         self.contact_us_page = CONTACT(self.driver)
         self.user_guide_page = UserGuide(self.driver)
+        self.password_page = Password(self.driver)
 
 
 
