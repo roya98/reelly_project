@@ -13,6 +13,6 @@ def contact_page_opens(context):
 
 
 @then("Verify the 'Change password' button is available")
-def verify_change_password_button(context):
+def verify_change_password_button_present(context):
     context.app.password_page.verify_button()
 
