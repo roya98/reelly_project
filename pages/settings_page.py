@@ -6,6 +6,7 @@ class Settings(Page):
     CONTACT_US = (By.CSS_SELECTOR, "a[href*='/contact-us'].page-setting-block.w-inline-block")
     USER_GUIDE = (By.CSS_SELECTOR, "a[href*='/user-guide'].page-setting-block")
     CHANGE_PASSWORD = (By.CSS_SELECTOR, "a[href*='/set-new-password']")
+    PAYMENTS = (By.CSS_SELECTOR, "a[href*='/subscription']")
 
     def click_contact_us(self):
         self.click(self.CONTACT_US)
@@ -16,3 +17,5 @@ class Settings(Page):
     def click_password_change(self):
         self.click(self.CHANGE_PASSWORD)
 
+    def click_on_subscription_payment(self):
+        self.click(self.PAYMENTS)
