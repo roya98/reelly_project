@@ -7,6 +7,8 @@ from pages.contact_us_page import CONTACT
 from pages.user_guide_page import UserGuide
 from pages.password_page import Password
 from pages.payments_page import Payment
+from pages.support_page import Support
+from pages.news_page import News
 
 
 
@@ -22,6 +24,8 @@ class Application:
         self.user_guide_page = UserGuide(self.driver)
         self.password_page = Password(self.driver)
         self.payments_page = Payment(self.driver)
+        self.support_page = Support(self.driver)
+        self.news_page = News(self.driver)
 
 
 

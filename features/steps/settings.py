@@ -20,3 +20,23 @@ def click_on_change_password(context):
 @when('Click on Subscription & payments option')
 def click_on_payments(context):
     context.app.settings_page.click_on_subscription_payment()
+
+
+@when('Click on support option')
+def click_on_support_option(context):
+    context.app.settings_page.click_on_support()
+
+
+@when('Switch to support window')
+def switch_to_support_window(context):
+    context.app.settings_page.switch_to_support_window()
+
+
+@when('Switch to settings window')
+def switch_to_settings(context):
+    context.app.settings_page.go_back_to_settings_page()
+
+
+@when('Click on news option')
+def click_on_news(context):
+    context.app.settings_page.click_on_news_option()
