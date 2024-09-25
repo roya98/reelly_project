@@ -11,7 +11,7 @@ def verify_contact_us_page(context):
 def verify_icons(context):
     context.app.contact_us_page.verify_social_icons()
 
+
 @then("Verify 'Connect the company' button is available and clickable")
 def verify_connect_company_button(context):
     context.app.contact_us_page.verify_connect_company()
-

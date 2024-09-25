@@ -40,3 +40,8 @@ def switch_to_settings(context):
 @when('Click on news option')
 def click_on_news(context):
     context.app.settings_page.click_on_news_option()
+
+
+@when('Click on Edit profile option')
+def click_on_edit_profile(context):
+    context.app.settings_page.click_edit_profile()

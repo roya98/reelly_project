@@ -21,7 +21,7 @@ class Page:
 
     def verify_text(self, expected_result, locator):
         actual_text = self.get_text(locator)
-        assert actual_text == expected_result, f'Error expected {expected_result}'
+        assert str(actual_text) == str(expected_result), f'Error expected {expected_result} but got {actual_text}'
 
     def verify_right_page(self, string):
         self.driver.wait.until(EC.url_contains(string))

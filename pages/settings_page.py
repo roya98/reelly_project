@@ -11,6 +11,7 @@ class Settings(Page):
     PAYMENTS = (By.CSS_SELECTOR, "a[href*='/subscription']")
     SUPPORT = (By.CSS_SELECTOR, "a[href*='https://api.whatsapp.com/send?phone=9715680983']")
     NEWS = (By.CSS_SELECTOR, "a[href*='https://t.me/reellydxb'].page-setting-block.w-inline-block")
+    EDIT_PROFILE = (By.CSS_SELECTOR, "a[href*='/profile-edit']")
 
     def click_contact_us(self):
         self.click(self.CONTACT_US)
@@ -40,3 +41,6 @@ class Settings(Page):
     def click_on_news_option(self):
         self.click(self.NEWS)
         self.driver.wait.until(EC.new_window_is_opened)
+
+    def click_edit_profile(self):
+        self.click(self.EDIT_PROFILE)

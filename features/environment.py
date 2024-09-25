@@ -11,7 +11,8 @@ def browser_init(context):
     :param context: Behave context
     """
     #driver_path = ChromeDriverManager().install()
-    driver_path = './chromedriver.exe'
+    driver_path = './chromedriver.exe'  # for windows users
+    #driver_path = './chromedriver.exe'
     service = Service(driver_path)
     context.driver = webdriver.Chrome(service=service)
 
