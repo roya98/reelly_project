@@ -45,3 +45,18 @@ def click_on_news(context):
 @when('Click on Edit profile option')
 def click_on_edit_profile(context):
     context.app.settings_page.click_edit_profile()
+
+
+@then('Verify the settings page opens')
+def verify_setting_page(context):
+    context.app.settings_page.verify_settings_page_opens()
+
+
+@then('Verify there are 12 options for the settings')
+def verify_twelve_options(context):
+    context.app.settings_page.verify_settings_elements()
+
+@then("Verify 'connect the company' button is available")
+def verify_connect_button(context):
+    context.app.settings_page.verify_connect_company_button()
+
