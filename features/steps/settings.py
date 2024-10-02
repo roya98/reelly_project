@@ -56,7 +56,7 @@ def verify_setting_page(context):
 def verify_twelve_options(context):
     context.app.settings_page.verify_settings_elements()
 
+
 @then("Verify 'connect the company' button is available")
 def verify_connect_button(context):
     context.app.settings_page.verify_connect_company_button()
-

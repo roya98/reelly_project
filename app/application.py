@@ -10,6 +10,7 @@ from pages.payments_page import Payment
 from pages.support_page import Support
 from pages.news_page import News
 from pages.personal_page import Personal
+from pages.secondary_deals_page import Secondary
 
 
 
@@ -28,6 +29,7 @@ class Application:
         self.support_page = Support(self.driver)
         self.news_page = News(self.driver)
         self.personal_page = Personal(self.driver)
+        self.secondary_page = Secondary(driver)
 
 
 
