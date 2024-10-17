@@ -17,11 +17,13 @@ class Secondary(Page):
     CURRENT = (By.CSS_SELECTOR, "div.page-count[wized='currentPageProperties'][w-el-text='1']")
     BACK = (By.CSS_SELECTOR, "div.pagination__button")
 
-    FILTER_BUTTON = (By.CSS_SELECTOR, "div.filter-button")
-    SELL = (By.CSS_SELECTOR, "div.switcher-button.active")
+    FILTER_BUTTON = (By.CSS_SELECTOR, "div.filter-text")
+    SELL = (By.CSS_SELECTOR, "div[wized='ListingTypeSell']")
     APPLY_FILTER = (By.CSS_SELECTOR, "a.button-filter.w-button")
     LISTING = (By.CSS_SELECTOR, "div.listing-card")
     LIST_SALE = (By.CSS_SELECTOR, "div[w-el-text='For sale']")
+    BUY = (By.CSS_SELECTOR, "div[wized='ListingTypeBuy']")
+    LIST_BUY = (By.CSS_SELECTOR, "div.for-sale-tag")
 
     def go_through_pages(self, number, navigation):
         for i in range(number):
@@ -66,17 +68,31 @@ class Secondary(Page):
         self.verify_right_page(self.SECONDARY_URL)
 
     def click_on_filters_select_sells(self):
-        # filter_button = self.driver.find_element(*self.FILTER_BUTTON)
-        # self.driver.execute_script("arguments[0].click();", filter_button)
-        element = self.driver.find_element(*self.FILTER_BUTTON)
-        print(element)
-        element.click()
-        self.click(self.SELL)
-        apply_filter = WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located(self.APPLY_FILTER))
-        ActionChains(self.driver).move_to_element(apply_filter).click().perform()
+        filter = self.driver.find_element(*self.FILTER_BUTTON)
+        filter.click()
+        self.driver.execute_script("document.querySelector('div.filter-button').style.display = 'block';")
+        self.driver.execute_script("document.querySelector('div.filter-button').style.visibility = 'visible';")
+        sell = self.driver.find_element(*self.SELL)
+        self.driver.execute_script("arguments[0].click()", sell)
+        apply = self.driver.find_element(*self.APPLY_FILTER)
+        self.driver.execute_script("arguments[0].scrollIntoView(true);", apply)
+
+    def click_on_filters_buy_apply(self):
+        filter = self.driver.find_element(*self.FILTER_BUTTON)
+        filter.click()
+        self.driver.execute_script("document.querySelector('div.filter-button').style.display = 'block';")
+        buy = self.driver.find_element(*self.BUY)
+        self.driver.execute_script("arguments[0].click()", buy)
+        apply = self.driver.find_element(*self.APPLY_FILTER)
+        self.driver.execute_script("arguments[0].click()", apply)
 
     def verify_for_sale_listing(self):
         listing = self.driver.find_elements(*self.LISTING)
         for_sale_lists = self.driver.find_elements(*self.LIST_SALE)
         assert len(listing) == len(for_sale_lists), f'expected {len(listing)} == {len(for_sale_lists)} but they are not'
+        print(len(listing))
 
+    def verify_tag_buy_listing(self):
+        listing = self.driver.find_elements(*self.LISTING)
+        list_buy = self.driver.find_elements(*self.LIST_BUY)
+        assert len(listing) == len(list_buy), f'expected {len(listing)} == {len(list_buy)} but they are not'

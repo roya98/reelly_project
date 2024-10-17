@@ -21,8 +21,8 @@ class MainPage(Page):
         self.driver.get('https://soft.reelly.io/')
 
     def login(self):
-        email_account = "royatest9@gmail.com"
-        password_account = "Test1234!"
+        email_account = "jasmine.test0011@gmail.com"
+        password_account = "Jasmine1234"
         self.input_text(email_account, self.EMAIL_FIELD)
         self.input_text(password_account, self.PASSWORD_FIELD)
         self.click(self.CONTINUE)
