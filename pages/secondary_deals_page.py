@@ -7,6 +7,8 @@ from selenium.webdriver import ActionChains
 
 from selenium.webdriver.support import expected_conditions as EC
 from time import sleep
+from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.common.keys import Keys
 
 
 class Secondary(Page):
@@ -24,6 +26,10 @@ class Secondary(Page):
     LIST_SALE = (By.CSS_SELECTOR, "div[w-el-text='For sale']")
     BUY = (By.CSS_SELECTOR, "div[wized='ListingTypeBuy']")
     LIST_BUY = (By.CSS_SELECTOR, "div.for-sale-tag")
+    FROM_PRICE = (
+    By.CSS_SELECTOR, "div.filters-block-1.mls.hidden div.select-block._8px input[wized='unitPriceFromFilter']")
+    TO_PRICE = (By.CSS_SELECTOR, "input[wized='unitPriceToFilter']")
+    PRODUCT_PRICES = (By.CSS_SELECTOR, "div.number-price-text")
 
     def go_through_pages(self, number, navigation):
         for i in range(number):
@@ -68,8 +74,9 @@ class Secondary(Page):
         self.verify_right_page(self.SECONDARY_URL)
 
     def click_on_filters_select_sells(self):
-        filter = self.driver.find_element(*self.FILTER_BUTTON)
-        filter.click()
+        filter_button = self.driver.find_element(*self.FILTER_BUTTON)
+        filter_button.click()
+        sleep(5)
         self.driver.execute_script("document.querySelector('div.filter-button').style.display = 'block';")
         self.driver.execute_script("document.querySelector('div.filter-button').style.visibility = 'visible';")
         sell = self.driver.find_element(*self.SELL)
@@ -78,8 +85,9 @@ class Secondary(Page):
         self.driver.execute_script("arguments[0].scrollIntoView(true);", apply)
 
     def click_on_filters_buy_apply(self):
-        filter = self.driver.find_element(*self.FILTER_BUTTON)
-        filter.click()
+        filter_button = self.driver.find_element(*self.FILTER_BUTTON)
+        filter_button.click()
+        sleep(5)
         self.driver.execute_script("document.querySelector('div.filter-button').style.display = 'block';")
         buy = self.driver.find_element(*self.BUY)
         self.driver.execute_script("arguments[0].click()", buy)
@@ -96,3 +104,17 @@ class Secondary(Page):
         listing = self.driver.find_elements(*self.LISTING)
         list_buy = self.driver.find_elements(*self.LIST_BUY)
         assert len(listing) == len(list_buy), f'expected {len(listing)} == {len(list_buy)} but they are not'
+
+    def click_on_filter_price_range(self):
+        self.click(self.FILTER_BUTTON)
+        element = self.driver.find_element(*self.APPLY_FILTER)
+        self.driver.execute_script("arguments[0].scrollIntoView();", element)
+        WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable(self.FROM_PRICE)).send_keys("1200000")
+        WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable(self.TO_PRICE)).send_keys("2000000")
+        self.click(self.APPLY_FILTER)
+
+    def verify_product_price(self):
+        prices = self.driver.find_elements(*self.PRODUCT_PRICES)
+        numbers = [int(price.replace("AED ", "")) for price in prices]
+        for num in numbers:
+            assert 2000000 >= num >= 1200000, f'prices is not whithin the range'
