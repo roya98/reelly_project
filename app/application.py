@@ -11,6 +11,7 @@ from pages.support_page import Support
 from pages.news_page import News
 from pages.personal_page import Personal
 from pages.secondary_deals_page import Secondary
+from pages.off_plan_page import OffPlan
 
 
 
@@ -30,6 +31,7 @@ class Application:
         self.news_page = News(self.driver)
         self.personal_page = Personal(self.driver)
         self.secondary_page = Secondary(driver)
+        self.off_plan_page = OffPlan(self.driver)
 
 
 
